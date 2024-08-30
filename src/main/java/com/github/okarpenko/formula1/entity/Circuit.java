@@ -1,32 +1,14 @@
 package com.github.okarpenko.formula1.entity;
 
-public class Circuit {
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
+public class Circuit {
+    @Id
     private Long id;
     private String name;
     private String image;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 }
