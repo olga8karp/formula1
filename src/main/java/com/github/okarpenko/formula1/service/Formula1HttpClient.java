@@ -1,6 +1,7 @@
 package com.github.okarpenko.formula1.service;
 
 import com.github.okarpenko.formula1.config.Formula1HttpClientProperties;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -55,6 +56,27 @@ public class Formula1HttpClient {
         return circuitsListResponse.getResponse().getFirst();
     }
 
+    public List<DriverResponse> getDrivers() {
+        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
+                .path("/drivers")
+                .encode()
+                .toUriString();
+        DriversListResponse driversListResponse = restTemplate.getForObject(url, DriversListResponse.class);
+        return driversListResponse.getResponse();
+    }
+
+    public DriverResponse getDriverById(Long id) {
+        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
+                .path("/drivers")
+                .query("id={id}")
+                .buildAndExpand(id)
+                .encode()
+                .toUriString();
+
+        DriversListResponse driversListResponse = restTemplate.getForObject(url, DriversListResponse.class);
+        return driversListResponse.getResponse().getFirst();
+    }
+
     @Getter
     @Setter
     public static class CircuitsResponse {
@@ -69,5 +91,58 @@ public class Formula1HttpClient {
         private List<CircuitsResponse> response;
     }
 
+    @Getter
+    @Setter
+    public static class DriverResponse {
+        int id;
+        String name;
+        String abbr;
+        String image;
+        String nationality;
+        String country;
+        String birthdate;
+        String birthplace;
+        int number;
+        int grands_prix_entered;
+        int world_championships;
+        int podiums;
+        int highest_grid_position;
+        int career_points;
+        HighestRaceFinish highest_race_finish;
+        List<TeamResponse> teams;
+    }
 
+    @Setter
+    @Getter
+    public static class DriversListResponse {
+        private List<DriverResponse> response;
+    }
+
+    @Setter
+    @Getter
+    public static class TeamResponse {
+        @Id
+        int id;
+        String name;
+        String logo;
+        String base;
+        int first_team_entry;
+        int world_championships;
+        HighestRaceFinish highest_race_finish;
+        int pole_positions;
+        int fastest_laps;
+        String president;
+        String director;
+        String technical_manager;
+        String chassis;
+        String engine;
+        String tyres;
+    }
+
+    @Getter
+    @Setter
+    public static class HighestRaceFinish {
+        int position;
+        int number;
+    }
 }
