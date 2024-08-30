@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="TestFormula1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="formula1" />
+    <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.github.okarpenko.formula1.TestFormula1Application" />
+    <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
