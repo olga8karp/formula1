@@ -1,3 +1,7 @@
 spring:
   application:
     name: formula1
+formula1-api:
+  api-key:
+  base-url: 'https://api-formula-1.p.rapidapi.com'
+  host: 'api-formula-1.p.rapidapi.com'
