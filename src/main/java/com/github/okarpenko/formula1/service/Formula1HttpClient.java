@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
@@ -75,6 +77,14 @@ public class Formula1HttpClient {
 
         DriversListResponse driversListResponse = restTemplate.getForObject(url, DriversListResponse.class);
         return driversListResponse.getResponse().getFirst();
+    }
+
+    public static abstract class RapidApiResponse<T> {
+        private String get;
+        private Map<String, Object> parameters;
+        private List<String> errors;
+        private Long results;
+        private List<T> response;
     }
 
     @Getter
