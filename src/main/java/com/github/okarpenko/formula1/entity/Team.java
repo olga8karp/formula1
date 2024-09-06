@@ -1,6 +1,7 @@
 package com.github.okarpenko.formula1.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -11,6 +12,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
+@Entity
 public class Team {
 
     @Id
@@ -31,7 +33,7 @@ public class Team {
     private String tyres;
 
     @ManyToMany
-    @JoinTable(name = "driver_team",
+    @JoinTable(name = "drivers_teams",
         joinColumns = @JoinColumn(name = "team_id"),
         inverseJoinColumns = @JoinColumn(name = "driver_id"))
     private List<Driver> drivers;

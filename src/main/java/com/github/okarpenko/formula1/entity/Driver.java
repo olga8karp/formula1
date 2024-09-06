@@ -4,6 +4,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import java.util.List;
 import lombok.Getter;
@@ -30,6 +31,6 @@ public class Driver {
     private int podiums;
     private int highestGridPosition;
     private int careerPoints;
-    @OneToMany(mappedBy = "driver", cascade=CascadeType.ALL)
+    @ManyToMany(mappedBy = "drivers", cascade=CascadeType.ALL)
     private List<Team> teams;
 }
