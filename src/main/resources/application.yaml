@@ -1,7 +1,17 @@
 spring:
   application:
     name: formula1
+  datasource:
+    url: jdbc:postgresql://localhost:5432/formula-1
+    username: maria
+    password: pass
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: create
+    show-sql: true
 formula1-api:
-  api-key:
+  api-key: 7328debb76mshbccdbf4e49a0a73p12a135jsnc0948d0607e8
   base-url: 'https://api-formula-1.p.rapidapi.com'
   host: 'api-formula-1.p.rapidapi.com'
+
