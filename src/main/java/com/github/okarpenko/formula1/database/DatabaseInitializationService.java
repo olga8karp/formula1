@@ -15,10 +15,5 @@ public class DatabaseInitializationService {
     private final CircuitService circuitService;
     private final DriverService driverService;
 
-    @PostConstruct
-    public void initialize() {
-        circuitService.saveAllCircuits(formula1HttpClient.getCircuits());
-        driverService.saveAllDrivers(formula1HttpClient.getDrivers());
-    }
 
 }
