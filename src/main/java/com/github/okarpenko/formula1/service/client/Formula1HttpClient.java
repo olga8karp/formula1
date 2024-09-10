@@ -83,6 +83,7 @@ public class Formula1HttpClient {
         String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
             .path("/rankings/drivers")
             .query("season={year}")
+            .buildAndExpand(year)
             .toUriString();
         RankingListResponse rankingResponseList = restTemplate.getForObject(url, RankingListResponse.class);
         return rankingResponseList.getRankingResponseList();
