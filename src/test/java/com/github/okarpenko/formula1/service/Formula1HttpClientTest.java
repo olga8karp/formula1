@@ -1,7 +1,8 @@
 package com.github.okarpenko.formula1.service;
 
 import com.github.okarpenko.formula1.config.Formula1HttpClientProperties;
-import com.github.okarpenko.formula1.service.Formula1HttpClient.CircuitsResponse;
+import com.github.okarpenko.formula1.service.client.Formula1HttpClient;
+import com.github.okarpenko.formula1.service.client.responses.CircuitsResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
@@ -12,8 +13,8 @@ import org.springframework.test.web.client.MockRestServiceServer;
 
 import java.util.List;
 
-import static com.github.okarpenko.formula1.service.Formula1HttpClient.X_RAPIDAPI_HOST;
-import static com.github.okarpenko.formula1.service.Formula1HttpClient.X_RAPIDAPI_KEY;
+import static com.github.okarpenko.formula1.service.client.Formula1HttpClient.X_RAPIDAPI_HOST;
+import static com.github.okarpenko.formula1.service.client.Formula1HttpClient.X_RAPIDAPI_KEY;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;

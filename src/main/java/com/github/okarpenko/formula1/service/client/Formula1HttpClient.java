@@ -1,15 +1,17 @@
-package com.github.okarpenko.formula1.service;
+package com.github.okarpenko.formula1.service.client;
 
 import com.github.okarpenko.formula1.config.Formula1HttpClientProperties;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import com.github.okarpenko.formula1.service.client.responses.responseLists.CircuitsListResponse;
+import com.github.okarpenko.formula1.service.client.responses.CircuitsResponse;
+import com.github.okarpenko.formula1.service.client.responses.DriverResponse;
+import com.github.okarpenko.formula1.service.client.responses.responseLists.DriversListResponse;
+import com.github.okarpenko.formula1.service.client.responses.RankingResponse;
+import com.github.okarpenko.formula1.service.client.responses.responseLists.RankingListResponse;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
@@ -77,80 +79,13 @@ public class Formula1HttpClient {
         return driversListResponse.getResponse().getFirst();
     }
 
-    public static abstract class RapidApiResponse<T> {
-        private String get;
-        private Map<String, Object> parameters;
-        private List<String> errors;
-        private Long results;
-        private List<T> response;
+    public List<RankingResponse> getRankingBySeason(int year) {
+        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
+            .path("/rankings/drivers")
+            .query("season={year}")
+            .toUriString();
+        RankingListResponse rankingResponseList = restTemplate.getForObject(url, RankingListResponse.class);
+        return rankingResponseList.getRankingResponseList();
     }
 
-    @Getter
-    @Setter
-    public static class CircuitsResponse {
-        private Long id;
-        private String name;
-        private String image;
-    }
-
-    @Setter
-    @Getter
-    public static class CircuitsListResponse {
-        private List<CircuitsResponse> response;
-    }
-
-    @Getter
-    @Setter
-    public static class DriverResponse {
-        int id;
-        String name;
-        String abbr;
-        String image;
-        String nationality;
-        String country;
-        String birthdate;
-        String birthplace;
-        int number;
-        int grands_prix_entered;
-        int world_championships;
-        int podiums;
-        int highest_grid_position;
-        int career_points;
-        HighestRaceFinish highest_race_finish;
-        List<TeamResponse> teams;
-    }
-
-    @Setter
-    @Getter
-    public static class DriversListResponse {
-        private List<DriverResponse> response;
-    }
-
-    @Setter
-    @Getter
-    public static class TeamResponse {
-        @Id
-        int id;
-        String name;
-        String logo;
-        String base;
-        int first_team_entry;
-        int world_championships;
-        HighestRaceFinish highest_race_finish;
-        int pole_positions;
-        int fastest_laps;
-        String president;
-        String director;
-        String technical_manager;
-        String chassis;
-        String engine;
-        String tyres;
-    }
-
-    @Getter
-    @Setter
-    public static class HighestRaceFinish {
-        int position;
-        int number;
-    }
 }
