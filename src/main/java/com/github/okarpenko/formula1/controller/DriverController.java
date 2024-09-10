@@ -18,18 +18,18 @@ public class DriverController {
         this.driverService = driverService;
     }
 
-    @GetMapping(path = "/drivers")
-    public String driversPage(Pageable pageable, Model model) {
-        Page<Driver> driversPage = driverService.findAll(pageable);
-        model.addAttribute("driversPage", driversPage);
-        return "drivers";
-    }
-
-    @GetMapping(path = "/drivers/{id}")
-    public String driverPage(@PathVariable(name = "id") Long id, Model model) {
-        Driver circuit = driverService.findById(id);
-        model.addAttribute("driver", circuit);
-        return "driver";
-    }
+//    @GetMapping(path = "/drivers")
+//    public String driversPage(Pageable pageable, Model model) {
+//        Page<Driver> driversPage = driverService.findAll(pageable);
+//        model.addAttribute("driversPage", driversPage);
+//        return "drivers";
+//    }
+//
+//    @GetMapping(path = "/drivers/{id}")
+//    public String driverPage(@PathVariable(name = "id") Long id, Model model) {
+//        Driver circuit = driverService.findById(id);
+//        model.addAttribute("driver", circuit);
+//        return "driver";
+//    }
 
 }
