@@ -8,6 +8,9 @@ import com.github.okarpenko.formula1.service.client.responses.responseLists.Driv
 import com.github.okarpenko.formula1.service.client.responses.RankingResponse;
 import com.github.okarpenko.formula1.service.client.responses.responseLists.RankingListResponse;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -84,6 +87,7 @@ public class Formula1HttpClient {
             .path("/rankings/drivers")
             .query("season={year}")
             .buildAndExpand(year)
+            .encode()
             .toUriString();
         RankingListResponse rankingResponseList = restTemplate.getForObject(url, RankingListResponse.class);
         return rankingResponseList.getRankingResponseList();

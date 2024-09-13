@@ -30,8 +30,8 @@ public class RankingService {
     private static DriverRanking mapDtoToEntity(RankingResponse rankingResponse) {
         DriverRanking driverRanking = new DriverRanking();
         driverRanking.setPosition(rankingResponse.getPosition());
-        driverRanking.setDriver(rankingResponse.getDriver());
-        driverRanking.setTeam(rankingResponse.getTeam());
+//        driverRanking.setDriver(rankingResponse.getDriver());
+//        driverRanking.setTeam(rankingResponse.getTeam());
         driverRanking.setPoints(rankingResponse.getPoints());
         driverRanking.setWins(rankingResponse.getWins());
         driverRanking.setBehind(rankingResponse.getBehind());
