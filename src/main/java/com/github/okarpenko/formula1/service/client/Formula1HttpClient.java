@@ -7,6 +7,7 @@ import com.github.okarpenko.formula1.service.client.responses.DriverResponse;
 import com.github.okarpenko.formula1.service.client.responses.responseLists.DriversListResponse;
 import com.github.okarpenko.formula1.service.client.responses.RankingResponse;
 import com.github.okarpenko.formula1.service.client.responses.responseLists.RankingListResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -70,11 +71,11 @@ public class Formula1HttpClient {
         return driversListResponse.getResponse();
     }
 
-    public DriverResponse getDriverById(Long id) {
+    public DriverResponse getDriverByName(String name) {
         String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
                 .path("/drivers")
-                .query("id={id}")
-                .buildAndExpand(id)
+                .query("search={name}")
+                .buildAndExpand(name)
                 .encode()
                 .toUriString();
 

@@ -37,17 +37,17 @@ public class DriverService {
 //        );
 //    }
 //
-//    public Driver findById(Long id) {
-//        Formula1HttpClient.DriverResponse driverById = httpClient.getDriverById(id);
-//        return mapDtoToEntity(driverById);
-//    }
-//
-//    private static Driver mapDtoToEntity(Formula1HttpClient.DriverResponse cr) {
-//        Driver driver = new Driver();
-//        driver.setId(cr.getId());
-//        driver.setName(cr.getName());
-//        driver.setNumber(cr.getNumber());
-//        driver.setNationality(cr.getNationality());
-//        return driver;
-//    }
+    public Driver findByName(String name) {
+       DriverResponse driverById = httpClient.getDriverByName(name);
+        return mapDtoToEntity(driverById);
+    }
+
+    private static Driver mapDtoToEntity(DriverResponse cr) {
+        Driver driver = new Driver();
+        driver.setId(cr.getId());
+        driver.setName(cr.getName());
+        driver.setNumber(cr.getNumber());
+        driver.setNationality(cr.getNationality());
+        return driver;
+    }
 }

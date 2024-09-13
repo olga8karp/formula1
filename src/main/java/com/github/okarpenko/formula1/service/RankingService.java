@@ -17,14 +17,16 @@ public class RankingService {
     private final Formula1HttpClient httpClient;
 
     public Page<DriverRanking> findAll(Pageable pageable, int year) {
-        List<DriverRanking> rankings = httpClient.getRankingBySeason(year).stream()
-            .map(RankingService::mapDtoToEntity)
-            .toList();
-        return new PageImpl<>(
-            rankings,
-            pageable,
-            rankings.size()
-        );
+//        List<DriverRanking> rankings = httpClient.getRankingBySeason(year).stream()
+//            .map(RankingService::mapDtoToEntity)
+//            .toList();
+//        return new PageImpl<>(
+//            rankings,
+//            pageable,
+//            rankings.size()
+//        );
+        List<RankingResponse> rankings = httpClient.getRankingBySeason(year);
+        return null;
     }
 
     private static DriverRanking mapDtoToEntity(RankingResponse rankingResponse) {
@@ -32,9 +34,9 @@ public class RankingService {
         driverRanking.setPosition(rankingResponse.getPosition());
 //        driverRanking.setDriver(rankingResponse.getDriver());
 //        driverRanking.setTeam(rankingResponse.getTeam());
-        driverRanking.setPoints(rankingResponse.getPoints());
-        driverRanking.setWins(rankingResponse.getWins());
-        driverRanking.setBehind(rankingResponse.getBehind());
+//        driverRanking.setPoints(rankingResponse.getPoints());
+//        driverRanking.setWins(rankingResponse.getWins());
+//        driverRanking.setBehind(rankingResponse.getBehind());
         return driverRanking;
     }
 

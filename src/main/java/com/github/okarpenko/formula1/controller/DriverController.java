@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DriverController {
@@ -24,12 +25,12 @@ public class DriverController {
 //        model.addAttribute("driversPage", driversPage);
 //        return "drivers";
 //    }
-//
-//    @GetMapping(path = "/drivers/{id}")
-//    public String driverPage(@PathVariable(name = "id") Long id, Model model) {
-//        Driver circuit = driverService.findById(id);
-//        model.addAttribute("driver", circuit);
-//        return "driver";
-//    }
+
+    @GetMapping(path = "/drivers/{name}")
+    public String driverPage(@RequestParam(name = "search") String name, Model model) {
+        Driver circuit = driverService.findByName(name);
+        model.addAttribute("driver", circuit);
+        return "driver";
+    }
 
 }
