@@ -19,12 +19,6 @@ public class DriverController {
         this.driverService = driverService;
     }
 
-//    @GetMapping(path = "/drivers")
-//    public String driversPage(Pageable pageable, Model model) {
-//        Page<Driver> driversPage = driverService.findAll(pageable);
-//        model.addAttribute("driversPage", driversPage);
-//        return "drivers";
-//    }
 
     @GetMapping(path = "/drivers/{name}")
     public String driverPage(@RequestParam(name = "search") String name, Model model) {
