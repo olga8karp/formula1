@@ -11,7 +11,7 @@ spring:
       ddl-auto: create
     show-sql: true
 formula1-api:
-  api-key: 7328debb76mshbccdbf4e49a0a73p12a135jsnc0948d0607e8
+  api-key: 13461de1f8mshaee224bbdd6f18dp1e3b7ejsnb2a9e0d5c9dc
   base-url: 'https://api-formula-1.p.rapidapi.com'
   host: 'api-formula-1.p.rapidapi.com'
 server:

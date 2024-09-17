@@ -1,7 +1,7 @@
 package com.github.okarpenko.formula1.service.client.responses;
 
-import com.github.okarpenko.formula1.entity.Driver;
-import com.github.okarpenko.formula1.entity.Team;
+import com.github.okarpenko.formula1.entity.ranking.DriverRanking;
+import com.github.okarpenko.formula1.entity.ranking.TeamRanking;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,10 +10,10 @@ import lombok.Setter;
 public class RankingResponse {
 
     private int position;
-//    private Driver driver;
-//    private Team team;
-//    private int points;
-//    private int wins;
-//    private int behind;
-//    private int season;
+    private DriverRanking driver;
+    private TeamRanking team;
+    private String points;
+    private Integer wins;
+    private Integer behind;
+    private Integer season;
 }

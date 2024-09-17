@@ -1,5 +1,9 @@
 package com.github.okarpenko.formula1.service.client;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.okarpenko.formula1.config.Formula1HttpClientProperties;
 import com.github.okarpenko.formula1.service.client.responses.responseLists.CircuitsListResponse;
 import com.github.okarpenko.formula1.service.client.responses.CircuitsResponse;
@@ -12,6 +16,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -91,6 +96,7 @@ public class Formula1HttpClient {
             .encode()
             .toUriString();
         RankingListResponse rankingResponseList = restTemplate.getForObject(url, RankingListResponse.class);
+
         return rankingResponseList.getRankingResponseList();
     }
 
