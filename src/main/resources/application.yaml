@@ -1,6 +1,9 @@
 spring:
   application:
     name: formula1
+  jpa:
+    hibernate:
+      ddl-auto: create
 formula1-api:
   api-key:
   base-url: 'https://api-formula-1.p.rapidapi.com'
