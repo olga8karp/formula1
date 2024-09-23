@@ -8,19 +8,19 @@ import lombok.Setter;
 @Getter
 public class Team {
     @Id
-    int id;
-    String name;
-    String logo;
-    String base;
-    int first_team_entry;
-    int world_championships;
-    HighestRaceFinish highest_race_finish;
-    int pole_positions;
-    int fastest_laps;
-    String president;
-    String director;
-    String technical_manager;
-    String chassis;
-    String engine;
-    String tyres;
+    private int id;
+    private String name;
+    private String logo;
+    private String base;
+    private int first_team_entry;
+    private int world_championships;
+    private HighestRaceFinish highest_race_finish;
+    private int pole_positions;
+    private int fastest_laps;
+    private String president;
+    private String director;
+    private String technical_manager;
+    private String chassis;
+    private String engine;
+    private String tyres;
 }

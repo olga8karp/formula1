@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class HighestRaceFinish {
-    int position;
-    int number;
+    private int position;
+    private int number;
 }

@@ -4,24 +4,25 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class Driver {
     @Id
-    int id;
-    String name;
-    String abbr;
-    String image;
-    String nationality;
-    String country;
-    String birthdate;
-    String birthplace;
-    int number;
-    int grands_prix_entered;
-    int world_championships;
-    int podiums;
-    int highest_grid_position;
-    int career_points;
-    HighestRaceFinish highest_race_finish;
-    Team[] teams;
+    private int id;
+    private String name;
+    private String abbr;
+    private String image;
+    private String nationality;
+    private String birthdate;
+    private String birthplace;
+    private int number;
+    private int grands_prix_entered;
+    private int world_championships;
+    private int podiums;
+    private int highest_grid_position;
+    private double career_points;
+    private HighestRaceFinish highest_race_finish;
+    private List<Team> teams;
 }
