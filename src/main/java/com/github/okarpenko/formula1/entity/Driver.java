@@ -18,11 +18,11 @@ public class Driver {
     private String birthdate;
     private String birthplace;
     private int number;
-    private int grands_prix_entered;
-    private int world_championships;
+    private int grandsPrixEntered;
+    private int worldChampionships;
     private int podiums;
-    private int highest_grid_position;
-    private double career_points;
-    private HighestRaceFinish highest_race_finish;
+    private int highestGridPosition;
+    private double careerPoints;
+    private HighestRaceFinish highestRaceFinish;
     private List<Team> teams;
 }

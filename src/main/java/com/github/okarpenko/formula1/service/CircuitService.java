@@ -1,6 +1,7 @@
 package com.github.okarpenko.formula1.service;
 
 import com.github.okarpenko.formula1.entity.Circuit;
+import com.github.okarpenko.formula1.repository.CircuitsRepository;
 import com.github.okarpenko.formula1.service.Formula1HttpClient.CircuitsResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -13,8 +14,17 @@ import java.util.List;
 public class CircuitService {
 
     private final Formula1HttpClient httpClient;
+    private CircuitsRepository repository;
 
-    public CircuitService(Formula1HttpClient httpClient) {
+    public void saveAllCircuits(List<CircuitsResponse> circuitsResponseList){
+        List<Circuit> circuits = circuitsResponseList.stream()
+                .map(CircuitService::mapDtoToEntity)
+                .toList();
+        repository.saveAll(circuits);
+    }
+
+    public CircuitService(Formula1HttpClient httpClient, CircuitsRepository circuitsRepository) {
+        this.repository = circuitsRepository;
         this.httpClient = httpClient;
     }
 

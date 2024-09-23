@@ -1,6 +1,7 @@
 package com.github.okarpenko.formula1.service;
 
 import com.github.okarpenko.formula1.config.Formula1HttpClientProperties;
+import com.github.okarpenko.formula1.entity.Team;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
@@ -61,6 +61,7 @@ public class Formula1HttpClient {
     public List<DriverResponse> getDrivers() {
         String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
                 .path("/drivers")
+                .query("search=alo")
                 .encode()
                 .toUriString();
         DriversListResponse driversListResponse = restTemplate.getForObject(url, DriversListResponse.class);
@@ -104,22 +105,21 @@ public class Formula1HttpClient {
     @Getter
     @Setter
     public static class DriverResponse {
-        int id;
-        String name;
-        String abbr;
-        String image;
-        String nationality;
-        String country;
-        String birthdate;
-        String birthplace;
-        int number;
-        int grands_prix_entered;
-        int world_championships;
-        int podiums;
-        int highest_grid_position;
-        int career_points;
-        HighestRaceFinish highest_race_finish;
-        List<TeamResponse> teams;
+        private int id;
+        private String name;
+        private String abbr;
+        private String image;
+        private String nationality;
+        private String birthdate;
+        private String birthplace;
+        private int number;
+        private int grands_prix_entered;
+        private int world_championships;
+        private int podiums;
+        private int highest_grid_position;
+        private double career_points;
+        private HighestRaceFinish highest_race_finish;
+        private List<Team> teams;
     }
 
     @Setter
@@ -132,27 +132,27 @@ public class Formula1HttpClient {
     @Getter
     public static class TeamResponse {
         @Id
-        int id;
-        String name;
-        String logo;
-        String base;
-        int first_team_entry;
-        int world_championships;
-        HighestRaceFinish highest_race_finish;
-        int pole_positions;
-        int fastest_laps;
-        String president;
-        String director;
-        String technical_manager;
-        String chassis;
-        String engine;
-        String tyres;
+        private int id;
+        private String name;
+        private String logo;
+        private String base;
+        private int first_team_entry;
+        private int world_championships;
+        private HighestRaceFinish highest_race_finish;
+        private int pole_positions;
+        private int fastest_laps;
+        private String president;
+        private String director;
+        private String technical_manager;
+        private String chassis;
+        private String engine;
+        private String tyres;
     }
 
     @Getter
     @Setter
     public static class HighestRaceFinish {
-        int position;
-        int number;
+        private int position;
+        private int number;
     }
 }
