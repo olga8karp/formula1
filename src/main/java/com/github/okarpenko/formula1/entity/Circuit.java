@@ -9,7 +9,6 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Entity
 @Table(name = "circuit")
 public class Circuit {
 

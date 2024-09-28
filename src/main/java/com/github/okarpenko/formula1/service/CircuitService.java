@@ -2,7 +2,8 @@ package com.github.okarpenko.formula1.service;
 
 import com.github.okarpenko.formula1.entity.Circuit;
 import com.github.okarpenko.formula1.repository.CircuitsRepository;
-import com.github.okarpenko.formula1.service.Formula1HttpClient.CircuitsResponse;
+import com.github.okarpenko.formula1.service.client.Formula1HttpClient;
+import com.github.okarpenko.formula1.service.client.responses.CircuitsResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

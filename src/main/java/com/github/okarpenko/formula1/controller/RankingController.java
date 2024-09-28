@@ -1,6 +1,5 @@
 package com.github.okarpenko.formula1.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.okarpenko.formula1.service.RankingService;
 import com.github.okarpenko.formula1.service.client.responses.RankingResponse;
 import java.util.List;
