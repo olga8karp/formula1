@@ -1,26 +1,17 @@
-package com.github.okarpenko.formula1.service.client;
+package com.github.okarpenko.formula1.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.okarpenko.formula1.config.Formula1HttpClientProperties;
-import com.github.okarpenko.formula1.service.client.responses.responseLists.CircuitsListResponse;
-import com.github.okarpenko.formula1.service.client.responses.CircuitsResponse;
-import com.github.okarpenko.formula1.service.client.responses.DriverResponse;
-import com.github.okarpenko.formula1.service.client.responses.responseLists.DriversListResponse;
-import com.github.okarpenko.formula1.service.client.responses.RankingResponse;
-import com.github.okarpenko.formula1.service.client.responses.responseLists.RankingListResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.github.okarpenko.formula1.entity.Team;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
@@ -70,17 +61,18 @@ public class Formula1HttpClient {
     public List<DriverResponse> getDrivers() {
         String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
                 .path("/drivers")
+                .query("search=alo")
                 .encode()
                 .toUriString();
         DriversListResponse driversListResponse = restTemplate.getForObject(url, DriversListResponse.class);
         return driversListResponse.getResponse();
     }
 
-    public DriverResponse getDriverByName(String name) {
+    public DriverResponse getDriverById(Long id) {
         String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
                 .path("/drivers")
-                .query("search={name}")
-                .buildAndExpand(name)
+                .query("id={id}")
+                .buildAndExpand(id)
                 .encode()
                 .toUriString();
 
@@ -88,16 +80,79 @@ public class Formula1HttpClient {
         return driversListResponse.getResponse().getFirst();
     }
 
-    public List<RankingResponse> getRankingBySeason(int year) {
-        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
-            .path("/rankings/drivers")
-            .query("season={year}")
-            .buildAndExpand(year)
-            .encode()
-            .toUriString();
-        RankingListResponse rankingResponseList = restTemplate.getForObject(url, RankingListResponse.class);
-
-        return rankingResponseList.getRankingResponseList();
+    public static abstract class RapidApiResponse<T> {
+        private String get;
+        private Map<String, Object> parameters;
+        private List<String> errors;
+        private Long results;
+        private List<T> response;
     }
 
+    @Getter
+    @Setter
+    public static class CircuitsResponse {
+        private Long id;
+        private String name;
+        private String image;
+    }
+
+    @Setter
+    @Getter
+    public static class CircuitsListResponse {
+        private List<CircuitsResponse> response;
+    }
+
+    @Getter
+    @Setter
+    public static class DriverResponse {
+        private int id;
+        private String name;
+        private String abbr;
+        private String image;
+        private String nationality;
+        private String birthdate;
+        private String birthplace;
+        private int number;
+        private int grands_prix_entered;
+        private int world_championships;
+        private int podiums;
+        private int highest_grid_position;
+        private double career_points;
+        private HighestRaceFinish highest_race_finish;
+        private List<Team> teams;
+    }
+
+    @Setter
+    @Getter
+    public static class DriversListResponse {
+        private List<DriverResponse> response;
+    }
+
+    @Setter
+    @Getter
+    public static class TeamResponse {
+        @Id
+        private int id;
+        private String name;
+        private String logo;
+        private String base;
+        private int first_team_entry;
+        private int world_championships;
+        private HighestRaceFinish highest_race_finish;
+        private int pole_positions;
+        private int fastest_laps;
+        private String president;
+        private String director;
+        private String technical_manager;
+        private String chassis;
+        private String engine;
+        private String tyres;
+    }
+
+    @Getter
+    @Setter
+    public static class HighestRaceFinish {
+        private int position;
+        private int number;
+    }
 }

@@ -46,8 +46,18 @@ public class DriverService {
         Driver driver = new Driver();
         driver.setId(cr.getId());
         driver.setName(cr.getName());
-        driver.setNumber(cr.getNumber());
+        driver.setAbbr(cr.getAbbr());
+        driver.setImage(cr.getImage());
         driver.setNationality(cr.getNationality());
+        driver.setBirthdate(cr.getBirthdate());
+        driver.setBirthplace(cr.getBirthplace());
+        driver.setNumber(cr.getNumber());
+        driver.setGrandsPrixEntered(cr.getGrands_prix_entered());
+        driver.setWorldChampionships(cr.getWorld_championships());
+        driver.setPodiums(cr.getPodiums());
+        driver.setHighestGridPosition(cr.getHighest_grid_position());
+        driver.setCareerPoints(cr.getCareer_points());
+        driver.setTeams(cr.getTeams());
         return driver;
     }
 }

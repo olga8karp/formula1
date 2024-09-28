@@ -8,17 +8,17 @@ import lombok.Setter;
 @Getter
 public class Race {
     @Id
-    int id;
-    String name;
-    Location location;
-    Circuit circuit;
-    String season;
-    String type;
-    Laps laps;
-    FastestLap fastest_lap;
-    String distance;
-    String timezone;
-    String date;
-    String weather;
-    String status;
+    private int id;
+    private String name;
+    private Location location;
+    private Circuit circuit;
+    private String season;
+    private String type;
+    private Laps laps;
+    private FastestLap fastest_lap;
+    private String distance;
+    private String timezone;
+    private String date;
+    private String weather;
+    private String status;
 }

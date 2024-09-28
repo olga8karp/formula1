@@ -1,27 +1,20 @@
 package com.github.okarpenko.formula1.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
-@Entity
 public class Driver {
-
     @Id
-    @Column(name = "driver_id")
     private int id;
     private String name;
     private String abbr;
     private String image;
     private String nationality;
-    private String country;
     private String birthdate;
     private String birthplace;
     private int number;
@@ -29,7 +22,7 @@ public class Driver {
     private int worldChampionships;
     private int podiums;
     private int highestGridPosition;
-    private int careerPoints;
-    @ManyToMany(mappedBy = "drivers", cascade=CascadeType.ALL)
+    private double careerPoints;
+    private HighestRaceFinish highestRaceFinish;
     private List<Team> teams;
 }
