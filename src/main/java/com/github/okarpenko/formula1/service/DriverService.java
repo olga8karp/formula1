@@ -1,13 +1,17 @@
 package com.github.okarpenko.formula1.service;
 
-import com.github.okarpenko.formula1.entity.Driver;
+import com.github.okarpenko.formula1.entity.ranking.DriverWithRanking;
+import com.github.okarpenko.formula1.entity.ranking.TeamRanking;
 import com.github.okarpenko.formula1.repository.DriverRepository;
+import com.github.okarpenko.formula1.repository.TeamRepository;
 import com.github.okarpenko.formula1.service.client.Formula1HttpClient;
 import com.github.okarpenko.formula1.service.client.responses.DriverResponse;
+import com.github.okarpenko.formula1.service.client.responses.RankingResponse;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,46 +22,33 @@ public class DriverService {
 
     private final Formula1HttpClient httpClient;
     private final DriverRepository driverRepository;
+    private final TeamRepository teamRepository;
 
-//    public void saveAllDrivers(List<DriverResponse> driverResponseList) {
-//        List<Driver> drivers = driverResponseList.stream()
-//            .map(DriverService::mapDtoToEntity)
-//            .toList();
-//        driverRepository.saveAll(drivers);
-//    }
-//
-//    public Page<Driver> findAll(Pageable pageable) {
-//        List<Driver> drivers = httpClient.getDrivers().stream()
-//            .map(DriverService::mapDtoToEntity)
-//            .toList();
-//        return new PageImpl<>(
-//            drivers,
-//            pageable,
-//            drivers.size()
-//        );
-//    }
-//
-    public Driver findByName(String name) {
-       DriverResponse driverById = httpClient.getDriverByName(name);
-        return mapDtoToEntity(driverById);
+    public Set<DriverWithRanking> getAllDrivers() {
+        List<Integer> years = httpClient.getSeasons();
+        List<RankingResponse> allRankingResponses = new ArrayList<>();
+        for (int year : years) {
+            allRankingResponses.addAll(httpClient.getRankingBySeason(year));
+        }
+        Set<DriverWithRanking> drivers = new TreeSet<>();
+        Set<TeamRanking> teams = new HashSet<>();
+        for (RankingResponse rankingResponse : allRankingResponses) {
+            TeamRanking team = rankingResponse.getTeam();
+            DriverWithRanking driver = rankingResponse.getDriver();
+            // add team here
+            drivers.add(driver);
+            teams.add(team);
+        }
+        saveAllTeams(teams);
+        return drivers;
     }
 
-    private static Driver mapDtoToEntity(DriverResponse cr) {
-        Driver driver = new Driver();
-        driver.setId(cr.getId());
-        driver.setName(cr.getName());
-        driver.setAbbr(cr.getAbbr());
-        driver.setImage(cr.getImage());
-        driver.setNationality(cr.getNationality());
-        driver.setBirthdate(cr.getBirthdate());
-        driver.setBirthplace(cr.getBirthplace());
-        driver.setNumber(cr.getNumber());
-        driver.setGrandsPrixEntered(cr.getGrands_prix_entered());
-        driver.setWorldChampionships(cr.getWorld_championships());
-        driver.setPodiums(cr.getPodiums());
-        driver.setHighestGridPosition(cr.getHighest_grid_position());
-        driver.setCareerPoints(cr.getCareer_points());
-        driver.setTeams(cr.getTeams());
-        return driver;
+
+    public void saveAllDrivers(Set<DriverWithRanking> drivers) {
+        driverRepository.saveAll(drivers);
+    }
+
+    public void saveAllTeams(Set<TeamRanking> teamRankings) {
+        teamRepository.saveAll(teamRankings);
     }
 }

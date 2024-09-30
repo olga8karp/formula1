@@ -3,6 +3,8 @@ package com.github.okarpenko.formula1.service.client;
 import com.github.okarpenko.formula1.config.Formula1HttpClientProperties;
 import com.github.okarpenko.formula1.service.client.responses.*;
 import com.github.okarpenko.formula1.service.client.responses.responseLists.*;
+import jakarta.persistence.criteria.CriteriaBuilder.In;
+import java.lang.reflect.Array;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -98,6 +100,14 @@ public class Formula1HttpClient {
 
         DriversListResponse driversListResponse = restTemplate.getForObject(url, DriversListResponse.class);
         return driversListResponse.getResponse().getFirst();
+    }
+
+    public List<Integer> getSeasons() {
+        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
+            .path("/seasons")
+            .encode()
+            .toUriString();
+        return restTemplate.getForObject(url, SeasonsListResponse.class).getResponse();
     }
 
 }

@@ -6,6 +6,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class FastestLap {
-    private Driver driver;
-    private String time;
+
 }
