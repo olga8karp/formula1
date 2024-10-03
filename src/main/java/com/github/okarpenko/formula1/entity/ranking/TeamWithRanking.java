@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class TeamRanking {
+public class TeamWithRanking {
 
     @Id
     private int id;
@@ -21,7 +21,7 @@ public class TeamRanking {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof TeamRanking that)) {
+        if (!(o instanceof TeamWithRanking that)) {
             return false;
         }
         return id == that.id && Objects.equals(name, that.name) && Objects.equals(logo, that.logo);

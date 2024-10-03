@@ -2,7 +2,6 @@ package com.github.okarpenko.formula1.entity.ranking;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import java.util.Objects;
 import lombok.Getter;
@@ -19,7 +18,6 @@ public class DriverWithRanking implements Comparable<DriverWithRanking> {
     private String abbr;
     private int number;
     private String image;
-
 
     @Override
     public boolean equals(Object o) {

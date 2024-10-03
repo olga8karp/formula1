@@ -1,12 +1,10 @@
 package com.github.okarpenko.formula1.database;
 
-import com.github.okarpenko.formula1.entity.ranking.DriverWithRanking;
 import com.github.okarpenko.formula1.service.CircuitService;
 import com.github.okarpenko.formula1.service.DriverService;
 import com.github.okarpenko.formula1.service.RankingService;
 import com.github.okarpenko.formula1.service.client.Formula1HttpClient;
 import jakarta.annotation.PostConstruct;
-import java.util.Set;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

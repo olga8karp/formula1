@@ -1,5 +1,6 @@
 package com.github.okarpenko.formula1.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Race {
+
     @Id
     private int id;
     private String name;
@@ -15,7 +17,8 @@ public class Race {
     private String season;
     private String type;
     private Laps laps;
-    private FastestLap fastest_lap;
+
+
     private String distance;
     private String timezone;
     private String date;
