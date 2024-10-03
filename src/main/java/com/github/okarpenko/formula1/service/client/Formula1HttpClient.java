@@ -3,8 +3,6 @@ package com.github.okarpenko.formula1.service.client;
 import com.github.okarpenko.formula1.config.Formula1HttpClientProperties;
 import com.github.okarpenko.formula1.service.client.responses.*;
 import com.github.okarpenko.formula1.service.client.responses.responseLists.*;
-import jakarta.persistence.criteria.CriteriaBuilder.In;
-import java.lang.reflect.Array;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -56,28 +54,6 @@ public class Formula1HttpClient {
         return circuitsListResponse.getResponse().getFirst();
     }
 
-    public List<DriverResponse> getDrivers() {
-        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
-            .path("/drivers")
-            .query("search=alo")
-            .encode()
-            .toUriString();
-        DriversListResponse driversListResponse = restTemplate.getForObject(url, DriversListResponse.class);
-        return driversListResponse.getResponse();
-    }
-
-    public DriverResponse getDriverById(Long id) {
-        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
-            .path("/drivers")
-            .query("id={id}")
-            .buildAndExpand(id)
-            .encode()
-            .toUriString();
-
-        DriversListResponse driversListResponse = restTemplate.getForObject(url, DriversListResponse.class);
-        return driversListResponse.getResponse().getFirst();
-    }
-
     public List<RankingResponse> getRankingBySeason(int year) {
         String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
             .path("/rankings/drivers")
@@ -90,17 +66,6 @@ public class Formula1HttpClient {
         return rankingResponseList.getRankingResponseList();
     }
 
-    public DriverResponse getDriverByName(String name) {
-        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
-            .path("/drivers")
-            .query("search={name}")
-            .buildAndExpand(name)
-            .encode()
-            .toUriString();
-
-        DriversListResponse driversListResponse = restTemplate.getForObject(url, DriversListResponse.class);
-        return driversListResponse.getResponse().getFirst();
-    }
 
     public List<Integer> getSeasons() {
         String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
