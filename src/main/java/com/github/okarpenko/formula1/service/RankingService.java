@@ -13,8 +13,7 @@ public class RankingService {
     private final Formula1HttpClient httpClient;
 
     public List<RankingResponse> findRankings(int year)  {
-        List<RankingResponse> rankings = httpClient.getRankingBySeason(year);
-        return rankings;
+        return httpClient.getRankingBySeason(year);
     }
 
 }
