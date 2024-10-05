@@ -1,5 +1,6 @@
 package com.github.okarpenko.formula1.service;
 
+import com.github.okarpenko.formula1.entity.DriverResponse;
 import com.github.okarpenko.formula1.entity.ranking.DriverWithRanking;
 import com.github.okarpenko.formula1.entity.ranking.TeamWithRanking;
 import com.github.okarpenko.formula1.repository.DriverRepository;
@@ -49,5 +50,10 @@ public class DriverService {
 
     public void saveAllTeams(Set<TeamWithRanking> teamRankings) {
         teamRepository.saveAll(teamRankings);
+    }
+
+    public DriverResponse getDriverByName(String firstName) {
+       // TODO: implement this method
+        return null;
     }
 }
