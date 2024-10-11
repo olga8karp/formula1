@@ -1,4 +1,4 @@
-package com.github.okarpenko.formula1.entity;
+package com.github.okarpenko.formula1.entity.details;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
