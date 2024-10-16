@@ -30,8 +30,8 @@ public class ContentManagerController {
     }
 
     @PostMapping("/teams/details")
-    public ResponseEntity<DriverDetails> addTeamsDetails(@RequestBody DriverDetails driverDetails) {
-        return ResponseEntity.ok(driverDetailsService.addDriverDetails(driverDetails));
+    public ResponseEntity<TeamDetails> addTeamsDetails(@RequestBody TeamDetails teamDetails) {
+        return ResponseEntity.ok(teamDetailsService.addTeamsDetails(teamDetails));
     }
 
     @GetMapping("/teams/details/list")
