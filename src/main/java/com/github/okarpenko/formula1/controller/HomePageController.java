@@ -1,5 +1,6 @@
 package com.github.okarpenko.formula1.controller;
 
+import java.time.LocalDate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -8,7 +9,7 @@ public class HomePageController {
 
     @GetMapping(path = "/")
     public String homePage() {
-        return "layout";
+        return "redirect:/rankings/" + LocalDate.now().getYear();
     }
 
 }

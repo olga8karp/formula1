@@ -84,5 +84,4 @@ public class Formula1HttpClient {
         DriversListResponse driversListResponse = restTemplate.getForObject(url, DriversListResponse.class);
         return driversListResponse.getResponse();
     }
-
 }
