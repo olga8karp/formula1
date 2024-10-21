@@ -3,15 +3,24 @@
 <th:block th:replace="~{fragments/head.html :: header}"> </th:block>
 <body>
 <div th:replace="~{fragments/navigation.html :: navbar}"></div>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col" th:each="circuit : ${circuitsPage.content}">
-        <div class="card" style="width: 18rem;">
-            <img th:src="${circuit.image}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text" th:text="${circuit.name}"></p>
-                <a th:href="@{'/circuits/' + ${circuit.id}}" class="btn btn-primary">Details</a>
-            </div>
-        </div>
-    </div>
+<div class="container mt-5">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Image</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="circuit : ${circuitsPage.content}" style="vertical-align: middle">
+      <td th:text="${circuit.id}"></td>
+      <td th:text="${circuit.name}"></td>
+      <td>
+        <img th:src="${circuit.image}" width="200">
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 </body>

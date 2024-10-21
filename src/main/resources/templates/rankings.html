@@ -4,7 +4,7 @@
 <body>
 <div th:replace="~{fragments/navigation.html :: navbar}"></div>
 <div class="container mt-5">
-  <h2>Race Results</h2>
+  <h2>Driver Ranking</h2>
   <div class="d-inline-flex p-2 mt-3 mb-3" th:each="season : ${seasons}">
     <a th:href="@{/rankings/{season}(season=${season})}" th:text="${season}"></a>
   </div>

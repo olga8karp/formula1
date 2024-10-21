@@ -17,12 +17,18 @@ public class RankingController {
     private final RankingService rankingService;
     private final Formula1HttpClient httpClient;
 
-    @GetMapping("/rankings/{season}")
+    @GetMapping("/driver/rankings/{season}")
     public String getDriverRanking(@PathVariable Integer season, Model model)  {
         List<RankingResponse> driverRankingPage = rankingService.findRankings(season);
         List<Integer> seasons = httpClient.getSeasons();
         model.addAttribute("driverRanking", driverRankingPage);
         model.addAttribute("seasons", seasons);
+        return "rankings";
+    }
+
+    @GetMapping("/team/rankings/{season}")
+    public String getTeamRanking(@PathVariable Integer season, Model model)  {
+        // TODO: implement this part
         return "rankings";
     }
 

@@ -9,7 +9,7 @@ public class HomePageController {
 
     @GetMapping(path = "/")
     public String homePage() {
-        return "redirect:/rankings/" + LocalDate.now().getYear();
+        return "redirect:/driver/rankings/" + LocalDate.now().getYear();
     }
 
 }
