@@ -2,6 +2,7 @@ package com.github.okarpenko.formula1.service.client;
 
 import com.github.okarpenko.formula1.config.Formula1HttpClientProperties;
 import com.github.okarpenko.formula1.entity.DriverResponse;
+import com.github.okarpenko.formula1.entity.race.Race;
 import com.github.okarpenko.formula1.service.client.responses.*;
 import com.github.okarpenko.formula1.service.client.responses.responseLists.*;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -75,6 +76,17 @@ public class Formula1HttpClient {
             .toUriString();
         TeamsRankingListResponse rankingResponseList = restTemplate.getForObject(url, TeamsRankingListResponse.class);
         return rankingResponseList.getTeamRankingResponseList();
+    }
+
+    public List<Race> getRacesListBySeason(int year) {
+        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
+            .path("/races")
+            .query("season={year}")
+            .buildAndExpand(year)
+            .encode()
+            .toUriString();
+        RacesListResponse rankingResponseList = restTemplate.getForObject(url, RacesListResponse.class);
+        return rankingResponseList.getRacesResponseList();
     }
 
     public List<Integer> getSeasons() {
