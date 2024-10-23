@@ -6,7 +6,7 @@ import com.github.okarpenko.formula1.entity.ranking.TeamWithRanking;
 import com.github.okarpenko.formula1.repository.DriverRepository;
 import com.github.okarpenko.formula1.repository.TeamRepository;
 import com.github.okarpenko.formula1.service.client.Formula1HttpClient;
-import com.github.okarpenko.formula1.service.client.responses.RankingResponse;
+import com.github.okarpenko.formula1.service.client.responses.DriverRankingResponse;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,15 +26,15 @@ public class DriverService {
 
     public Set<DriverWithRanking> getAllDrivers() {
         List<Integer> years = httpClient.getSeasons();
-        List<RankingResponse> allRankingResponses = new ArrayList<>();
+        List<DriverRankingResponse> allDriverRankingRespons = new ArrayList<>();
         for (int year : years) {
-            allRankingResponses.addAll(httpClient.getRankingBySeason(year));
+            allDriverRankingRespons.addAll(httpClient.getDriverRankingBySeason(year));
         }
         Set<DriverWithRanking> drivers = new TreeSet<>();
         Set<TeamWithRanking> teams = new HashSet<>();
-        for (RankingResponse rankingResponse : allRankingResponses) {
-            TeamWithRanking team = rankingResponse.getTeam();
-            DriverWithRanking driver = rankingResponse.getDriver();
+        for (DriverRankingResponse driverRankingResponse : allDriverRankingRespons) {
+            TeamWithRanking team = driverRankingResponse.getTeam();
+            DriverWithRanking driver = driverRankingResponse.getDriver();
             // add team here
             drivers.add(driver);
             teams.add(team);

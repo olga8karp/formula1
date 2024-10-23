@@ -55,16 +55,26 @@ public class Formula1HttpClient {
         return circuitsListResponse.getResponse().getFirst();
     }
 
-    public List<RankingResponse> getRankingBySeason(int year) {
+    public List<DriverRankingResponse> getDriverRankingBySeason(int year) {
         String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
             .path("/rankings/drivers")
             .query("season={year}")
             .buildAndExpand(year)
             .encode()
             .toUriString();
-        RankingListResponse rankingResponseList = restTemplate.getForObject(url, RankingListResponse.class);
+        DriverRankingListResponse rankingResponseList = restTemplate.getForObject(url, DriverRankingListResponse.class);
+        return rankingResponseList.getDriverRankingResponseList();
+    }
 
-        return rankingResponseList.getRankingResponseList();
+    public List<TeamRankingResponse> getTeamRankingsBySeason(int year) {
+        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
+            .path("/rankings/teams")
+            .query("season={year}")
+            .buildAndExpand(year)
+            .encode()
+            .toUriString();
+        TeamsRankingListResponse rankingResponseList = restTemplate.getForObject(url, TeamsRankingListResponse.class);
+        return rankingResponseList.getTeamRankingResponseList();
     }
 
     public List<Integer> getSeasons() {

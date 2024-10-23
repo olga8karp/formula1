@@ -1,7 +1,8 @@
 package com.github.okarpenko.formula1.service;
 
 import com.github.okarpenko.formula1.service.client.Formula1HttpClient;
-import com.github.okarpenko.formula1.service.client.responses.RankingResponse;
+import com.github.okarpenko.formula1.service.client.responses.DriverRankingResponse;
+import com.github.okarpenko.formula1.service.client.responses.TeamRankingResponse;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,12 @@ public class RankingService {
 
     private final Formula1HttpClient httpClient;
 
-    public List<RankingResponse> findRankings(int year)  {
-        return httpClient.getRankingBySeason(year);
+    public List<DriverRankingResponse> findDriverRankings(int year)  {
+        return httpClient.getDriverRankingBySeason(year);
+    }
+
+    public List<TeamRankingResponse> findTeamRankings(int year)  {
+        return httpClient.getTeamRankingsBySeason(year);
     }
 
 }

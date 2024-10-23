@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<th:block th:replace="~{fragments/head.html :: header}"> </th:block>
+<body>
+<div th:replace="~{fragments/navigation.html :: navbar}"></div>
+<div class="container mt-5">
+  <h2>Driver Ranking</h2>
+  <div class="d-inline-flex p-2 mt-3 mb-3" th:each="season : ${seasons}">
+    <a th:href="@{/team/rankings/{season}(season=${season})}" th:text="${season}"></a>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Position</th>
+      <th>Team Name</th>
+      <th>Points</th>
+      <th>Season</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ranking : ${teamRanking}">
+      <td th:text="${ranking.position}"></td>
+      <td>
+        <img th:src="${ranking.team.logo}" width="50">
+        <a th:href="@{/team-info/{name}(name=${ranking.team.name})}" th:text="${ranking.team.name}"></a>
+      </td>
+      <td th:text="${ranking.points}"></td>
+      <td th:text="${ranking.season}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

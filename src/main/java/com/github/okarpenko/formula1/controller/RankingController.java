@@ -2,7 +2,8 @@ package com.github.okarpenko.formula1.controller;
 
 import com.github.okarpenko.formula1.service.RankingService;
 import com.github.okarpenko.formula1.service.client.Formula1HttpClient;
-import com.github.okarpenko.formula1.service.client.responses.RankingResponse;
+import com.github.okarpenko.formula1.service.client.responses.DriverRankingResponse;
+import com.github.okarpenko.formula1.service.client.responses.TeamRankingResponse;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,17 +20,21 @@ public class RankingController {
 
     @GetMapping("/driver/rankings/{season}")
     public String getDriverRanking(@PathVariable Integer season, Model model)  {
-        List<RankingResponse> driverRankingPage = rankingService.findRankings(season);
+        List<DriverRankingResponse> driverRankingPage = rankingService.findDriverRankings(season);
         List<Integer> seasons = httpClient.getSeasons();
         model.addAttribute("driverRanking", driverRankingPage);
         model.addAttribute("seasons", seasons);
-        return "rankings";
+        return "driver-ranking";
     }
 
     @GetMapping("/team/rankings/{season}")
     public String getTeamRanking(@PathVariable Integer season, Model model)  {
         // TODO: implement this part
-        return "rankings";
+        List<TeamRankingResponse> driverRankingPage = rankingService.findTeamRankings(season);
+        List<Integer> seasons = httpClient.getSeasons();
+        model.addAttribute("teamRanking", driverRankingPage);
+        model.addAttribute("seasons", seasons);
+        return "teams-ranking";
     }
 
 }
