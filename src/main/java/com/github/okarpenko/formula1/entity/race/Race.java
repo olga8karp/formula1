@@ -10,11 +10,16 @@ import lombok.Setter;
 public class Race {
 
     private int id;
-
     private Competition competition;
     private Circuit circuit;
     private String season;
-//    private LocalDateTime date;
+    private String date;
     private String distance;
-    private RaceStatistics raceStatistics;
+
+    @JsonProperty("fastest_lap")
+    private FastestLap fastestLap;
+    private Laps laps;
+
+
+
 }

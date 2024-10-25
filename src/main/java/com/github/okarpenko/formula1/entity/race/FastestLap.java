@@ -1,11 +1,21 @@
 package com.github.okarpenko.formula1.entity.race;
 
-import java.time.Duration;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class FastestLap {
 
-    private Duration duration;
-    private int driverId;
+    private String time;
+
+    @JsonProperty("driver")
+    private DriverObj driver;
+
+    @Data
+    public static class DriverObj {
+        @JsonProperty("id")
+        private int driverId;
+    }
+
 }
+
