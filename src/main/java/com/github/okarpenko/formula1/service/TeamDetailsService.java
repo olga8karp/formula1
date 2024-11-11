@@ -12,7 +12,10 @@ public class TeamDetailsService {
 
     private final TeamDetailsRepository teamDetailsRepository;
 
-    public TeamDetails addTeamsDetails(TeamDetails teamDetails) {
+    public TeamDetails addTeamsDetails(TeamDetails teamDetails) throws Exception {
+        if(teamDetailsRepository.findTeamDetailsByName(teamDetails.getName()) != null) {
+            throw new Exception("Team with name " + teamDetails.getName() + " already exists");
+        }
         return teamDetailsRepository.save(teamDetails);
     }
 

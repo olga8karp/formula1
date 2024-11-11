@@ -30,7 +30,7 @@ public class ContentManagerController {
     }
 
     @PostMapping("/teams/details")
-    public ResponseEntity<TeamDetails> addTeamsDetails(@RequestBody TeamDetails teamDetails) {
+    public ResponseEntity<TeamDetails> addTeamsDetails(@RequestBody TeamDetails teamDetails) throws Exception {
         return ResponseEntity.ok(teamDetailsService.addTeamsDetails(teamDetails));
     }
 

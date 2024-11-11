@@ -1,4 +1,4 @@
-package com.github.okarpenko.formula1.controller;
+package com.github.okarpenko.formula1.controller.admin;
 
 import com.github.okarpenko.formula1.entity.details.TeamDetails;
 import com.github.okarpenko.formula1.service.TeamDetailsService;
@@ -17,7 +17,7 @@ public class AdminActionsController {
 
     @PatchMapping("/teams/{id}")
     public ResponseEntity<TeamDetails> editTeamDetails(@PathVariable("id") int id,
-        @RequestBody TeamDetails teamDetails) {
+        @RequestBody TeamDetails teamDetails) throws Exception {
         TeamDetails teamDetailsToUpdate = teamDetailsService.retrieveTeamDetailsById(id);
         teamDetailsToUpdate.setName(teamDetails.getName());
         teamDetailsToUpdate.setTeamLogo(teamDetails.getTeamLogo());
