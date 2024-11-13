@@ -2,6 +2,7 @@ package com.github.okarpenko.formula1.service;
 
 import com.github.okarpenko.formula1.entity.details.TeamDetails;
 import com.github.okarpenko.formula1.repository.TeamDetailsRepository;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,8 @@ public class TeamDetailsService {
         if(teamDetailsRepository.findTeamDetailsByName(teamDetails.getName()) != null) {
             throw new Exception("Team with name " + teamDetails.getName() + " already exists");
         }
-        return teamDetailsRepository.save(teamDetails);
+        teamDetailsRepository.saveTeamDetails(teamDetails.getName(), teamDetails.getTeamLogo(), teamDetails.getBasicInfo());
+        return teamDetails;
     }
 
     public List<TeamDetails> listTeamDetails() {
@@ -30,4 +32,5 @@ public class TeamDetailsService {
     public TeamDetails retrieveTeamDetailsById(Integer id) {
         return teamDetailsRepository.findById(id).orElse(null);
     }
+
 }

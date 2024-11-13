@@ -2,6 +2,7 @@ package com.github.okarpenko.formula1.service.client;
 
 import com.github.okarpenko.formula1.config.Formula1HttpClientProperties;
 import com.github.okarpenko.formula1.entity.DriverResponse;
+import com.github.okarpenko.formula1.entity.Team;
 import com.github.okarpenko.formula1.entity.race.Race;
 import com.github.okarpenko.formula1.service.client.responses.*;
 import com.github.okarpenko.formula1.service.client.responses.responseLists.*;
@@ -76,6 +77,15 @@ public class Formula1HttpClient {
             .toUriString();
         TeamsRankingListResponse rankingResponseList = restTemplate.getForObject(url, TeamsRankingListResponse.class);
         return rankingResponseList.getTeamRankingResponseList();
+    }
+
+    public List<Team> getTeams() {
+        String url = UriComponentsBuilder.fromHttpUrl(properties.getBaseUrl())
+            .path("/teams")
+            .encode()
+            .toUriString();
+        TeamListResponse teamsListResponse = restTemplate.getForObject(url, TeamListResponse.class);
+        return teamsListResponse.getResponse();
     }
 
     public List<Race> getRacesListBySeason(int year) {
