@@ -25,10 +25,10 @@
       <td th:text="${ranking.position}"></td>
       <td>
         <img th:src="${ranking.driver.image}" width="50">
-        <a th:href="@{/driver-info/{name}(name=${ranking.driver.name})}" th:text="${ranking.driver.name}"></a>
+        <div th:href="@{/driver-info/{name}(name=${ranking.driver.name})}" th:text="${ranking.driver.name}"></div>
       </td>
       <td>
-        <a th:href="@{/team-info/{name}(name=${ranking.team.name})}" th:text="${ranking.team.name}"></a>
+        <div th:href="@{/team-info/{name}(name=${ranking.team.name})}" th:text="${ranking.team.name}"></div>
       </td>
       <td th:text="${ranking.points}"></td>
       <td th:text="${ranking.wins}"></td>

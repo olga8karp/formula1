@@ -2,7 +2,6 @@ package com.github.okarpenko.formula1.controller.admin;
 
 import com.github.okarpenko.formula1.entity.details.TeamDetails;
 import com.github.okarpenko.formula1.service.TeamDetailsService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

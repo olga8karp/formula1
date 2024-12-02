@@ -32,6 +32,11 @@ public class AdminPageController {
         return "admin-team";
     }
 
+    @GetMapping("/admin/add-driver")
+    public String getDriverPage(){
+        return "admin-driver";
+    }
+
     private List<String> getTeamListAsString() {
         return formula1HttpClient.getTeams().stream().map(Team::getName).toList();
     }
